@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 from requests import get
 import time
-
+import os
 
 class Scraper:
 
@@ -28,8 +28,8 @@ class Scraper:
         return output
 
     def download(self, url, file_name):
-        # open in binary mode
-        with open(file_name, "wb") as file:
+        path = "images/"
+        with open(os.path.join(path, file_name), "wb") as file:
             # get request
             response = get(url)
             # write to file
