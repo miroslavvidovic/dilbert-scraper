@@ -17,8 +17,8 @@ class SearchScraper(object):
 
     def __init__(self, page_num, year):
         """
-        :param page_num: number of pages to scrape
-        :param year: number of years
+        :param page_num: Number of pages to scrape
+        :param year: Number of years
         :type page_num: int
         :type year: int
 
@@ -34,7 +34,8 @@ class SearchScraper(object):
         """
           Scrape the data from the website
           :rtype: list[dict]
-          :return: title, date and the image for every comic
+          :return: Dictionary containing the title, date and the url of
+          the image for every comic
 
         """
         comics = self.bsoup.find_all('div', {'class': 'comic-item-container'})

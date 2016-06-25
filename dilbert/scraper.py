@@ -4,7 +4,6 @@ scraper.py module
 Miroslav Vidovic
 
 """
-import os
 from bs4 import BeautifulSoup
 from requests import get
 
@@ -24,34 +23,10 @@ class Scraper(object):
         """
           Scrape the data from the website
           :rtype: list[dict]
-          :return: title, date and the image for every comic
+          :return: A list of dictionaries containing the title, date and the
+          image for every comic
 
           """
-
-        def download(file_url, file_name):
-            """
-            Download a file
-            :param file_url: url of the targeted file
-            :param file_name: name for the saved file
-            :type file_url: string
-            :type file_name: string
-
-            """
-            path = "images/"
-            with open(os.path.join(path, file_name), "wb") as destination:
-                response = get(file_url)
-                destination.write(response.content)
-
-        def generate_name(name):
-            """
-            Generate a name for an image by adding .jpg to the param name
-            :param name: name for the file
-            :type name: string
-            :return: name.jpg
-            :rtype string
-            """
-            file_name = name + ".jpg"
-            return file_name
 
         comics = self.bsoup.find_all('div', {'class': 'comic-item-container'})
         output = []
@@ -64,11 +39,8 @@ class Scraper(object):
             img = comic.find('img', {'class': 'img-comic'})
             url = img.attrs['src']
 
-            img_name = generate_name(full_date)
-            download(url, img_name)
-
             title = comic.find('span', {'class': 'comic-title-name'}).text
             output.append({
-                'title': title, 'date': full_date, 'image': img_name
+                'title': title, 'date': full_date, 'image': url
             })
         return output

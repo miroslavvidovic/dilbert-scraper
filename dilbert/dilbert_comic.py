@@ -1,34 +1,43 @@
-class DilbertComic():
+"""
+dilbert_comic.py module
+15.06.2016.
+Miroslav Vidovic
+
+"""
+
+
+class DilbertComic(object):
     """
+    Class for DilbertComic objects containing the title, image and the date
 
     """
     def __init__(self):
-        self._title = None
-        self._image = None
-        self._date = None
+        self.__title = None
+        self.__image = None
+        self.__date = None
 
     @property
     def title(self):
-        return self._title
+        return self.__title
 
     @title.setter
     def title(self, value):
-        self._title = value
+        self.__title = value
 
     @property
     def image(self):
-        return self._image
+        return self.__image
 
     @image.setter
     def image(self, value):
-        self._image = value
+        self.__image = value
 
     @property
     def date(self):
-        return self._date
+        return self.__date
 
     @date.setter
     def date(self, value):
-        self._date = value
+        self.__date = value
 
 
